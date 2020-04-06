@@ -1,6 +1,6 @@
-package com.example.demo.view
+package desktop.view
 
-import com.example.demo.app.Styles
+import desktop.app.Styles
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {
