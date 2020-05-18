@@ -7,10 +7,12 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame implements ActionListener{
+    boolean isEnd = false;
     JButton bWTemp, bWCis, bWWil, bWPow, bWDeszcz;
     JButton bSiec, bUstawienia, bWyjscie;
     JLabel lTytTemp, lTytCis, lTytWil, lTytPow, lTytDeszcz;
     JLabel lDaneTemp, lDaneCis, lDaneWil, lDanePow, lDaneDeszcz;
+    JLabel lData;
     MainFrame(){
         setSize(500,400);
         setTitle("DestopApp");
@@ -101,11 +103,19 @@ public class MainFrame extends JFrame implements ActionListener{
         bWyjscie.setBounds(350, 300, 100, 20);
         add(bWyjscie);
         bWyjscie.addActionListener(this);
+        
+        lData = new JLabel(new Date().toString());
+        lData.setBounds(150, 360, 300, 20);
+        lData.setForeground(new Color(200, 69,69));
+        add(lData);
+        
+        
     }
     
     public void actionPerformed(ActionEvent e){
         Object source = e.getSource();
         if(source==bWyjscie){
+            isEnd = true;
             dispose();
         }
         //TODO reszta przysiskow
@@ -115,5 +125,18 @@ public class MainFrame extends JFrame implements ActionListener{
         MainFrame frame_main = new MainFrame();
         frame_main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame_main.setVisible(true);
+        
+        Thread t = new Thread(() ->{
+            
+            frame_main.refresh();   
+            
+        });
+        t.start();
+    }
+    
+    public void refresh(){
+        while(!isEnd){
+            lData.setText(new Date().toString());
+        }
     }
 }
