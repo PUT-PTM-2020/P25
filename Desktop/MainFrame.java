@@ -77,7 +77,7 @@ public class MainFrame extends JFrame implements ActionListener{
         bWPow.addActionListener(this);
         
         //Deszcz
-        lTytDeszcz = new JLabel("Rain: ");
+        lTytDeszcz = new JLabel("Hight: ");
         lTytDeszcz.setBounds(50, 250, 100, 20);
         add(lTytDeszcz);
         
